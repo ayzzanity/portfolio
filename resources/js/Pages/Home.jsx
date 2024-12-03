@@ -340,7 +340,11 @@ export default function Home() {
                                     </a>
                                 </div>
                                 <div className="flex justify-center mt-6">
-                                    <img src="/images/dummy-qr.png" alt="Scan to download CV" className="h-32 w-32" />
+                                    <div className="text-center">
+                                        <p className="text-gray-600 dark:text-gray-300 mb-2">OR</p>
+                                        <p className="text-gray-600 dark:text-gray-300 mb-2">Scan QR to download CV</p>
+                                        <img src="https://via.placeholder.com/150" alt="Scan to download CV" className="h-32 w-32" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
