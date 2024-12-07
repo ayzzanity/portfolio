@@ -1,15 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "@inertiajs/react";
 import { Head } from "@inertiajs/react";
 import { BsMoonStarsFill, BsSunFill } from "react-icons/bs";
 import FloatingNav from "./FloatingNav";
 
-export default function MainLayout({ children }) {
+export default function MainLayout({ children, refs }) {
     const [darkMode, setDarkMode] = useState(true);
+    const [currentSection, setCurrentSection] = useState(null);
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
     };
+
+    const { main, skills, work, projects, contact } = refs;
+
+    useEffect(() => {
+        const sections = [main, skills, work, projects, contact];
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setCurrentSection(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        sections.forEach((section) => {
+            if (section.current) {
+                observer.observe(section.current);
+            }
+        });
+
+        return () => {
+            sections.forEach((section) => {
+                if (section.current) {
+                    observer.unobserve(section.current);
+                }
+            });
+        };
+    }, [main, skills, work, projects, contact]);
 
     return (
         <div className={darkMode ? "dark" : ""}>
@@ -23,21 +54,28 @@ export default function MainLayout({ children }) {
                     href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
                 />
             </Head>
-            <nav className="bg-slate-200 dark:bg-gray-900 shadow-sm">
+            <nav
+                ref={main}
+                className="bg-slate-200 dark:bg-gray-900 shadow-sm md:relative fixed top-0 left-0 right-0 z-50"
+            >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
-                                <Link
-                                    href="/"
-                                    className="text-xl rounded-md hover:cursor-pointer hover:text-primary-700 hover:dark:text-teal-500 font-bold text-primary-600 dark:text-teal-600"
-                                >
+                                <Link className="text-xl rounded-md hover:cursor-pointer hover:text-primary-700 hover:dark:text-teal-500 font-bold text-primary-600 dark:text-teal-600">
                                     IcedSanity
                                 </Link>
                             </div>
                         </div>
+                        <FloatingNav
+                            main={main}
+                            skills={skills}
+                            work={work}
+                            projects={projects}
+                            contact={contact}
+                            currentSection={currentSection}
+                        />
                         <div className="flex items-center">
-                            <FloatingNav />
                             <button
                                 className="rounded-md p-2 hover:cursor-pointer hover:bg-slate-300 hover:dark:bg-gray-800"
                                 onClick={toggleDarkMode}

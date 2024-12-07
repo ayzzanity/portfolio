@@ -1,36 +1,46 @@
 import React from "react";
 import LayoutController from "../Controllers/LayoutController";
-import { BiBriefcase, BiChip, BiHome, BiSitemap, BiUser } from "react-icons/bi";
 
-const FloatingNav = () => {
-    const { main, skills, work, projects, contact, scrollToSection } =
-        LayoutController();
+import { FaBriefcase, FaCode, FaCodeBranch } from "react-icons/fa6";
+import { FaHome, FaMailBulk } from "react-icons/fa";
+
+const FloatingNav = ({
+    main,
+    skills,
+    work,
+    projects,
+    contact,
+    currentSection,
+}) => {
+    const { scrollToSection, getButtonClass } = LayoutController({
+        currentSection,
+    });
 
     return (
-        <div className="fixed top-1/2 left-16 transform -translate-y-1/2 hidden md:block gap-2 bg-slate-100 dark:bg-gray-700 text-gray-400 font-medium border border-slate-200 dark:border-gray-600 p-2 rounded-lg text-center z-10 shadow-lg">
+        <div className="md:block md:fixed md:top-1/2 md:left-16 md:transform md:-translate-y-1/2 md:bg-slate-100 md:dark:bg-gray-700 text-gray-400 font-medium md:border md:border-slate-200 md:dark:border-gray-600 md:p-2 md:rounded-lg md:text-center md:z-10 md:shadow-lg md:gap-2 flex gap-6 p-4">
             <div>
                 <button onClick={() => scrollToSection(main)}>
-                    <BiHome className="text-4xl hover:text-primary-500 hover:dark:text-teal-500" />
+                    <FaHome className={getButtonClass(main)} />
                 </button>
             </div>
             <div>
                 <button onClick={() => scrollToSection(skills)}>
-                    <BiChip className="text-4xl hover:text-primary-500 hover:dark:text-teal-500" />
+                    <FaCode className={getButtonClass(skills)} />
                 </button>
             </div>
             <div>
                 <button onClick={() => scrollToSection(work)}>
-                    <BiBriefcase className="text-4xl hover:text-primary-500 hover:dark:text-teal-500" />
+                    <FaBriefcase className={getButtonClass(work)} />
                 </button>
             </div>
             <div>
                 <button onClick={() => scrollToSection(projects)}>
-                    <BiSitemap className="text-4xl hover:text-primary-500 hover:dark:text-teal-500" />
+                    <FaCodeBranch className={getButtonClass(projects)} />
                 </button>
             </div>
             <div>
                 <button onClick={() => scrollToSection(contact)}>
-                    <BiUser className="text-4xl hover:text-primary-500 hover:dark:text-teal-500" />
+                    <FaMailBulk className={getButtonClass(contact)} />
                 </button>
             </div>
         </div>

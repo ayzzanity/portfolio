@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Head } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
 import GitHubCalendar from "react-github-calendar";
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
-
-import LayoutController from "../Controllers/LayoutController";
 
 export default function Home() {
     const selectLastHalfYear = (contributions) => {
@@ -59,13 +57,16 @@ export default function Home() {
         },
     ];
 
-    const { main, skills, work, projects, contact } = LayoutController();
+    const main = useRef(null);
+    const skills = useRef(null);
+    const work = useRef(null);
+    const projects = useRef(null);
+    const contact = useRef(null);
 
     return (
-        <MainLayout>
+        <MainLayout refs={{ main, skills, work, projects, contact }}>
             <Head title="Ayzal Abdulwahid - Full-stack Web Developer" />
             <div>
-                {/* <section className="bg-slate-200 dark:bg-gray-900 min-h-screen"> */}
                 <section
                     ref={main}
                     className="text-center p-10 py-20 bg-slate-200 dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-700 min-h-screen"
@@ -95,7 +96,7 @@ export default function Home() {
 
                 <section
                     ref={skills}
-                    className=" text-center p-10 py-20 bg-slate-200 dark:bg-gradient-to-b dark:from-gray-700 dark:to-gray-900 min-h-screen"
+                    className="text-center p-10 py-20 bg-slate-200 dark:bg-gradient-to-b dark:from-gray-700 dark:to-gray-900 min-h-screen"
                 >
                     <div className="max-w-7xl mx-auto">
                         <h3 className="text-3xl py-2 font-bold text-gray-800  dark:text-white">
@@ -126,242 +127,237 @@ export default function Home() {
                     </div>
                 </section>
 
-                <div className="bg-white dark:bg-gray-900 py-16">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center">
-                            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
-                                Work Experience
-                            </h2>
-                            <p className="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-300">
-                                Professional journey and achievements
-                            </p>
-                        </div>
-
-                        <div className="mt-12 max-w-lg mx-auto lg:max-w-4xl">
-                            <div className="relative pl-8 pb-12 border-l-4 border-primary-600">
-                                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary-600"></div>
-                                <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 mb-8 transition-transform transform hover:scale-105">
-                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                        <div>
-                                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                                                Computer Programmer III
-                                                (Full-stack Web Developer)
-                                            </h3>
-                                            <p className="text-primary-600 dark:text-primary-400">
-                                                Department of Social Welfare and
-                                                Development
-                                            </p>
-                                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                                                Philippines
-                                            </p>
-                                        </div>
-                                        <p className="text-gray-500 dark:text-gray-400 mt-2 md:mt-0">
-                                            2023 - Present
+                <section
+                    ref={work}
+                    className="text-center p-10 py-20 bg-slate-200 dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-700 min-h-screen"
+                >
+                    <div className="max-w-7xl mx-auto">
+                        <h3 className="text-3xl py-2 font-bold text-gray-800  dark:text-white">
+                            Work Experience
+                        </h3>
+                        <p className="text-md py-2 leading-8 text-gray-800 dark:text-gray-300">
+                            Professional journey and achievements
+                        </p>
+                        <div className="flex gap-8 md:flex-row md:items-center md:justify-between mb-4">
+                            <div className="md:h-[80vh] bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 mb-8 transition-transform transform hover:scale-105">
+                                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                    <div>
+                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                                            Computer Programmer III (Full-stack
+                                            Web Developer)
+                                        </h3>
+                                        <p className="text-primary-600 dark:text-primary-400">
+                                            Department of Social Welfare and
+                                            Development
+                                        </p>
+                                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                                            Philippines
                                         </p>
                                     </div>
+                                    <p className="text-gray-500 dark:text-gray-400 mt-2 md:mt-0">
+                                        2023 - Present
+                                    </p>
+                                </div>
 
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                Key Responsibilities
-                                            </h4>
-                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                                                <li>
-                                                    Design and develop
-                                                    full-stack web applications
-                                                    using Vue.js and Laravel
-                                                </li>
-                                                <li>
-                                                    Create and maintain RESTful
-                                                    APIs for government
-                                                    information systems
-                                                </li>
-                                                <li>
-                                                    Implement secure
-                                                    authentication and
-                                                    authorization systems
-                                                </li>
-                                                <li>
-                                                    Optimize database queries
-                                                    and application performance
-                                                </li>
-                                                <li>
-                                                    Collaborate with
-                                                    cross-functional teams to
-                                                    deliver government digital
-                                                    services
-                                                </li>
-                                            </ul>
-                                        </div>
+                                <div className="space-y-4">
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                            Key Responsibilities
+                                        </h4>
+                                        <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                            <li>
+                                                Design and develop full-stack
+                                                web applications using Vue.js
+                                                and Laravel
+                                            </li>
+                                            <li>
+                                                Create and maintain RESTful APIs
+                                                for government information
+                                                systems
+                                            </li>
+                                            <li>
+                                                Implement secure authentication
+                                                and authorization systems
+                                            </li>
+                                            <li>
+                                                Optimize database queries and
+                                                application performance
+                                            </li>
+                                            <li>
+                                                Collaborate with
+                                                cross-functional teams to
+                                                deliver government digital
+                                                services
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                        <div>
-                                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                Key Projects
-                                            </h4>
-                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                                                <li>
-                                                    Developed and maintained
-                                                    social welfare information
-                                                    management systems
-                                                </li>
-                                                <li>
-                                                    Implemented data
-                                                    visualization dashboards for
-                                                    program monitoring
-                                                </li>
-                                                <li>
-                                                    Built automated reporting
-                                                    systems for government
-                                                    programs
-                                                </li>
-                                                <li>
-                                                    Integrated various
-                                                    government services for
-                                                    streamlined operations
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                            Key Projects
+                                        </h4>
+                                        <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                            <li>
+                                                Developed and maintained social
+                                                welfare information management
+                                                systems
+                                            </li>
+                                            <li>
+                                                Implemented data visualization
+                                                dashboards for program
+                                                monitoring
+                                            </li>
+                                            <li>
+                                                Built automated reporting
+                                                systems for government programs
+                                            </li>
+                                            <li>
+                                                Integrated various government
+                                                services for streamlined
+                                                operations
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                        <div>
-                                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                Technologies Used
-                                            </h4>
-                                            <div className="flex flex-wrap gap-2">
-                                                {[
-                                                    "Vue.js",
-                                                    "Laravel",
-                                                    "PHP",
-                                                    "MySQL",
-                                                    "JavaScript",
-                                                    "REST APIs",
-                                                    "Git",
-                                                    "Bootstrap",
-                                                    "jQuery",
-                                                ].map((tech) => (
-                                                    <span
-                                                        key={tech}
-                                                        className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-100"
-                                                    >
-                                                        {tech}
-                                                    </span>
-                                                ))}
-                                            </div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                            Technologies Used
+                                        </h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {[
+                                                "Vue.js",
+                                                "Laravel",
+                                                "PHP",
+                                                "MySQL",
+                                                "JavaScript",
+                                                "REST APIs",
+                                                "Git",
+                                                "Bootstrap",
+                                                "jQuery",
+                                            ].map((tech) => (
+                                                <span
+                                                    key={tech}
+                                                    className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-100"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="relative pl-8 pb-12 border-l-4 border-primary-600 min-h-screen">
-                                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary-600"></div>
-                                <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 mb-8 transition-transform transform hover:scale-105">
-                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                        <div>
-                                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                                                Full-Stack Web Developer
-                                            </h3>
-                                            <p className="text-primary-600 dark:text-primary-400">
-                                                Company 1
-                                            </p>
-                                        </div>
-                                        <p className="text-gray-500 dark:text-gray-400 mt-2 md:mt-0">
-                                            July 2021 - September 2023
+                            <div className="md:h-[80vh] bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 mb-8 transition-transform transform hover:scale-105">
+                                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                    <div>
+                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                                            Full-Stack Web Developer
+                                        </h3>
+                                        <p className="text-primary-600 dark:text-primary-400">
+                                            Company 1
                                         </p>
                                     </div>
+                                    <p className="text-gray-500 dark:text-gray-400 mt-2 md:mt-0">
+                                        July 2021 - September 2023
+                                    </p>
+                                </div>
 
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                Key Responsibilities
-                                            </h4>
-                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                                                <li>
-                                                    Developed and maintained
-                                                    full-stack web applications
-                                                    using React.js and Node.js
-                                                </li>
-                                                <li>
-                                                    Implemented responsive and
-                                                    interactive user interfaces
-                                                    with modern React practices
-                                                </li>
-                                                <li>
-                                                    Built RESTful APIs and
-                                                    microservices using Node.js
-                                                    and Express
-                                                </li>
-                                                <li>
-                                                    Managed DevOps workflows
-                                                    using GitLab CI/CD pipelines
-                                                </li>
-                                                <li>
-                                                    Handled server deployment
-                                                    and maintenance on Linode
-                                                    infrastructure
-                                                </li>
-                                            </ul>
-                                        </div>
+                                <div className="space-y-4">
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                            Key Responsibilities
+                                        </h4>
+                                        <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                            <li>
+                                                Developed and maintained
+                                                full-stack web applications
+                                                using React.js and Node.js
+                                            </li>
+                                            <li>
+                                                Implemented responsive and
+                                                interactive user interfaces with
+                                                modern React practices
+                                            </li>
+                                            <li>
+                                                Built RESTful APIs and
+                                                microservices using Node.js and
+                                                Express
+                                            </li>
+                                            <li>
+                                                Managed DevOps workflows using
+                                                GitLab CI/CD pipelines
+                                            </li>
+                                            <li>
+                                                Handled server deployment and
+                                                maintenance on Linode
+                                                infrastructure
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                        <div>
-                                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                Key Achievements
-                                            </h4>
-                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                                                <li>
-                                                    Reduced deployment time by
-                                                    60% through CI/CD pipeline
-                                                    optimization
-                                                </li>
-                                                <li>
-                                                    Improved application
-                                                    performance by implementing
-                                                    server-side caching
-                                                </li>
-                                                <li>
-                                                    Automated server maintenance
-                                                    tasks, reducing manual
-                                                    operations by 40%
-                                                </li>
-                                                <li>
-                                                    Led the migration of legacy
-                                                    systems to modern
-                                                    React-based architecture
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                            Key Achievements
+                                        </h4>
+                                        <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                            <li>
+                                                Reduced deployment time by 60%
+                                                through CI/CD pipeline
+                                                optimization
+                                            </li>
+                                            <li>
+                                                Improved application performance
+                                                by implementing server-side
+                                                caching
+                                            </li>
+                                            <li>
+                                                Automated server maintenance
+                                                tasks, reducing manual
+                                                operations by 40%
+                                            </li>
+                                            <li>
+                                                Led the migration of legacy
+                                                systems to modern React-based
+                                                architecture
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                        <div>
-                                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                Technologies Used
-                                            </h4>
-                                            <div className="flex flex-wrap gap-2">
-                                                {[
-                                                    "React.js",
-                                                    "Node.js",
-                                                    "Express",
-                                                    "MongoDB",
-                                                    "GitLab CI/CD",
-                                                    "Linode",
-                                                    "Docker",
-                                                    "Redis",
-                                                    "Nginx",
-                                                ].map((tech) => (
-                                                    <span
-                                                        key={tech}
-                                                        className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-100"
-                                                    >
-                                                        {tech}
-                                                    </span>
-                                                ))}
-                                            </div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                            Technologies Used
+                                        </h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {[
+                                                "React.js",
+                                                "Node.js",
+                                                "Express",
+                                                "MongoDB",
+                                                "GitLab CI/CD",
+                                                "Linode",
+                                                "Docker",
+                                                "Redis",
+                                                "Nginx",
+                                            ].map((tech) => (
+                                                <span
+                                                    key={tech}
+                                                    className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-100"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div className="bg-gray-100 dark:bg-gray-800 py-16 min-h-screen">
+                <section
+                    ref={projects}
+                    className="bg-gray-100 dark:bg-gray-800 py-16 min-h-screen"
+                >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center">
                             <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
@@ -485,9 +481,12 @@ export default function Home() {
                             ))}
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div id="contact" className="bg-white dark:bg-gray-900 py-16">
+                <section
+                    ref={contact}
+                    className="bg-white dark:bg-gray-900 py-16"
+                >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center">
                             <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
@@ -551,7 +550,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
                 <footer className="bg-white dark:bg-gray-900 py-4">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                         <p className="text-sm text-gray-500 dark:text-gray-400">
